@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinaif.dao.AdvertInfoDao">
+
+    <resultMap type="com.sinaif.entity.AdvertInfo" id="AdvertInfoMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="positioncode" column="positioncode" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="adverttype" column="adverttype" jdbcType="VARCHAR"/>
+        <result property="imgurl" column="imgurl" jdbcType="VARCHAR"/>
+        <result property="thumbnailurl" column="thumbnailurl" jdbcType="VARCHAR"/>
+        <result property="floattype" column="floattype" jdbcType="INTEGER"/>
+        <result property="floattext" column="floattext" jdbcType="VARCHAR"/>
+        <result property="floatimgurl" column="floatimgurl" jdbcType="VARCHAR"/>
+        <result property="icontext" column="icontext" jdbcType="VARCHAR"/>
+        <result property="jumptype" column="jumptype" jdbcType="INTEGER"/>
+        <result property="jumplink" column="jumplink" jdbcType="VARCHAR"/>
+        <result property="loginflag" column="loginflag" jdbcType="INTEGER"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="createby" column="createby" jdbcType="VARCHAR"/>
+        <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+        <result property="updateby" column="updateby" jdbcType="VARCHAR"/>
+        <result property="updatetime" column="updatetime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+	<sql id="Base_Column_List">
+        id, positioncode, name, title, adverttype, imgurl, thumbnailurl, floattype, floattext, floatimgurl, icontext, jumptype, jumplink, loginflag, sort, status, remark, createby, createtime, updateby, updatetime        
+    </sql>
+	
+    <!--查询单个-->
+    <select id="queryById" parameterType="java.lang.String" resultMap="AdvertInfoMap">
+        select
+          <include refid="Base_Column_List"/>
+        from t_advert_info
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryBySelective" parameterType="com.sinaif.entity.AdvertInfo" resultMap="AdvertInfoMap">
+        select
+          <include refid="Base_Column_List"/>
+        from t_advert_info
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="positioncode != null">
+                and positioncode = #{positioncode,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="title != null">
+                and title = #{title,jdbcType=VARCHAR}
+            </if>
+            <if test="adverttype != null">
+                and adverttype = #{adverttype,jdbcType=VARCHAR}
+            </if>
+            <if test="imgurl != null">
+                and imgurl = #{imgurl,jdbcType=VARCHAR}
+            </if>
+            <if test="thumbnailurl != null">
+                and thumbnailurl = #{thumbnailurl,jdbcType=VARCHAR}
+            </if>
+            <if test="floattype != null">
+                and floattype = #{floattype,jdbcType=INTEGER}
+            </if>
+            <if test="floattext != null">
+                and floattext = #{floattext,jdbcType=VARCHAR}
+            </if>
+            <if test="floatimgurl != null">
+                and floatimgurl = #{floatimgurl,jdbcType=VARCHAR}
+            </if>
+            <if test="icontext != null">
+                and icontext = #{icontext,jdbcType=VARCHAR}
+            </if>
+            <if test="jumptype != null">
+                and jumptype = #{jumptype,jdbcType=INTEGER}
+            </if>
+            <if test="jumplink != null">
+                and jumplink = #{jumplink,jdbcType=VARCHAR}
+            </if>
+            <if test="loginflag != null">
+                and loginflag = #{loginflag,jdbcType=INTEGER}
+            </if>
+            <if test="sort != null">
+                and sort = #{sort,jdbcType=INTEGER}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="remark != null">
+                and remark = #{remark,jdbcType=VARCHAR}
+            </if>
+            <if test="createby != null">
+                and createby = #{createby,jdbcType=VARCHAR}
+            </if>
+            <if test="createtime != null">
+                and createtime = #{createtime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateby != null">
+                and updateby = #{updateby,jdbcType=VARCHAR}
+            </if>
+            <if test="updatetime != null">
+                and updatetime = #{updatetime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+	<!--新增所有列-->
+    <insert id="insert" parameterType="com.sinaif.entity.AdvertInfo">
+        insert into t_advert_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+                id,
+            </if>
+			<if test="positioncode != null">
+                positioncode,
+            </if>
+			<if test="name != null">
+                name,
+            </if>
+			<if test="title != null">
+                title,
+            </if>
+			<if test="adverttype != null">
+                adverttype,
+            </if>
+			<if test="imgurl != null">
+                imgurl,
+            </if>
+			<if test="thumbnailurl != null">
+                thumbnailurl,
+            </if>
+			<if test="floattype != null">
+                floattype,
+            </if>
+			<if test="floattext != null">
+                floattext,
+            </if>
+			<if test="floatimgurl != null">
+                floatimgurl,
+            </if>
+			<if test="icontext != null">
+                icontext,
+            </if>
+			<if test="jumptype != null">
+                jumptype,
+            </if>
+			<if test="jumplink != null">
+                jumplink,
+            </if>
+			<if test="loginflag != null">
+                loginflag,
+            </if>
+			<if test="sort != null">
+                sort,
+            </if>
+			<if test="status != null">
+                status,
+            </if>
+			<if test="remark != null">
+                remark,
+            </if>
+			<if test="createby != null">
+                createby,
+            </if>
+			<if test="createtime != null">
+                createtime,
+            </if>
+			<if test="updateby != null">
+                updateby,
+            </if>
+			<if test="updatetime != null">
+                updatetime,
+            </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+			<if test="positioncode != null">
+                #{positioncode,jdbcType=VARCHAR},
+            </if>
+			<if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+			<if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+			<if test="adverttype != null">
+                #{adverttype,jdbcType=VARCHAR},
+            </if>
+			<if test="imgurl != null">
+                #{imgurl,jdbcType=VARCHAR},
+            </if>
+			<if test="thumbnailurl != null">
+                #{thumbnailurl,jdbcType=VARCHAR},
+            </if>
+			<if test="floattype != null">
+                #{floattype,jdbcType=INTEGER},
+            </if>
+			<if test="floattext != null">
+                #{floattext,jdbcType=VARCHAR},
+            </if>
+			<if test="floatimgurl != null">
+                #{floatimgurl,jdbcType=VARCHAR},
+            </if>
+			<if test="icontext != null">
+                #{icontext,jdbcType=VARCHAR},
+            </if>
+			<if test="jumptype != null">
+                #{jumptype,jdbcType=INTEGER},
+            </if>
+			<if test="jumplink != null">
+                #{jumplink,jdbcType=VARCHAR},
+            </if>
+			<if test="loginflag != null">
+                #{loginflag,jdbcType=INTEGER},
+            </if>
+			<if test="sort != null">
+                #{sort,jdbcType=INTEGER},
+            </if>
+			<if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+			<if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+			<if test="createby != null">
+                #{createby,jdbcType=VARCHAR},
+            </if>
+			<if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+			<if test="updateby != null">
+                #{updateby,jdbcType=VARCHAR},
+            </if>
+			<if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+		</trim>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update" parameterType="com.sinaif.entity.AdvertInfo">
+        update t_advert_info
+        <set>
+            <if test="positioncode != null">
+                positioncode = #{positioncode,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="adverttype != null">
+                adverttype = #{adverttype,jdbcType=VARCHAR},
+            </if>
+            <if test="imgurl != null">
+                imgurl = #{imgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="thumbnailurl != null">
+                thumbnailurl = #{thumbnailurl,jdbcType=VARCHAR},
+            </if>
+            <if test="floattype != null">
+                floattype = #{floattype,jdbcType=INTEGER},
+            </if>
+            <if test="floattext != null">
+                floattext = #{floattext,jdbcType=VARCHAR},
+            </if>
+            <if test="floatimgurl != null">
+                floatimgurl = #{floatimgurl,jdbcType=VARCHAR},
+            </if>
+            <if test="icontext != null">
+                icontext = #{icontext,jdbcType=VARCHAR},
+            </if>
+            <if test="jumptype != null">
+                jumptype = #{jumptype,jdbcType=INTEGER},
+            </if>
+            <if test="jumplink != null">
+                jumplink = #{jumplink,jdbcType=VARCHAR},
+            </if>
+            <if test="loginflag != null">
+                loginflag = #{loginflag,jdbcType=INTEGER},
+            </if>
+            <if test="sort != null">
+                sort = #{sort,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="createby != null">
+                createby = #{createby,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateby != null">
+                updateby = #{updateby,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById" parameterType="java.lang.String">
+        delete from t_advert_info 
+		where id = #{id,jdbcType=VARCHAR}
+    </delete>
+
+</mapper>

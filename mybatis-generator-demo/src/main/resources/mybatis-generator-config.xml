@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- !!!! Driver Class Path !!!! Administrator -->
+
+    <!--指定特定数据库的jdbc驱动jar包的位置 -->
+    <classPathEntry
+            location="C:\Users\leo\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+
+    <context id="context" targetRuntime="MyBatis3">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 自动识别数据库关键字，默认false -->
+        <property name="autoDelimitKeywords" value="true"/>
+        <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错 -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <!-- optional，旨在创建class时，对注释进行控制 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- !!!! Database Configurations !!!! -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.1.81:3306/sinaif_lending"
+                        userId="dev_do" password="cf@fAyqRQNhGvJdbR6"/>
+
+        <!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类
+            targetPackage     指定生成的model生成所在的包名
+            targetProject     指定在该项目下所在的路径
+        -->
+        <javaModelGenerator targetPackage="com.sinaif.model.pay"
+                            targetProject="src/main/java">
+
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
+            <property name="trimStrings" value="false"/>
+        </javaModelGenerator>
+
+        <!-- !!!! Mapper XML Configurations !!!! -->
+        <sqlMapGenerator targetPackage="com.sinaif.dao.mybatis.pay.mapping"
+                         targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <javaClientGenerator targetPackage="com.sinaif.dao.mybatis.pay"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- !!!! Table Configurations !!!! -->
+        <!--
+        <columnOverride column="payStatus" javaType="Integer" jdbcType="TINYINT"></columnOverride>
+        <columnOverride column="content" javaType="java.lang.String" jdbcType="LONGVARCHAR"></columnOverride>
+        -->
+        <!--
+       <table tableName="t_pay_auth"
+              domainObjectName="PayAuthBean"
+              enableCountByExample="false"
+              enableDeleteByExample="false"
+              enableUpdateByExample="false"
+              enableSelectByExample="false"
+              enableDeleteByPrimaryKey="true"
+              enableInsert="true"
+              enableUpdateByPrimaryKey="true">
+       </table>
+
+       <table tableName="t_pay_detail"
+              domainObjectName="PayDetailBean"
+              enableCountByExample="false"
+              enableDeleteByExample="false"
+              enableUpdateByExample="false"
+              enableSelectByExample="false"
+              enableDeleteByPrimaryKey="true"
+              enableInsert="true"
+              enableUpdateByPrimaryKey="true">
+       </table>
+
+       <table tableName="t_pay_recharge_item"
+              domainObjectName="RechargeItemBean"
+              enableCountByExample="false"
+              enableDeleteByExample="false"
+              enableUpdateByExample="false"
+              enableSelectByExample="false"
+              enableDeleteByPrimaryKey="true"
+              enableInsert="true"
+              enableUpdateByPrimaryKey="true">
+       </table>
+
+       <table tableName="t_pay_recharge_record"
+              domainObjectName="RechargeRecordBean"
+              enableCountByExample="false"
+              enableDeleteByExample="false"
+              enableUpdateByExample="false"
+              enableSelectByExample="false"
+              enableDeleteByPrimaryKey="true"
+              enableInsert="true"
+              enableUpdateByPrimaryKey="true">
+       </table>
+
+       <table tableName="t_pay_recharge_item"
+              domainObjectName="RechargeItemBean"
+              enableCountByExample="false"
+              enableDeleteByExample="false"
+              enableUpdateByExample="false"
+              enableSelectByExample="false"
+              enableDeleteByPrimaryKey="true"
+              enableInsert="true"
+              enableUpdateByPrimaryKey="true">
+       </table>
+
+
+        <table tableName="t_item_info"
+               domainObjectName="ItemInfoBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+        <table tableName="t_item_rule"
+               domainObjectName="ItemRuleBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_item_rule_detail"
+               domainObjectName="ItemRuleDetailBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_item_pricing_config"
+               domainObjectName="ItemPricingConfigBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_sys_wallet_info"
+               domainObjectName="SysWalletInfoBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_sys_wallet_detail"
+               domainObjectName="SysWalletDetailBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_reddot_config"
+               domainObjectName="RedDotConfigBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_reddot_record"
+               domainObjectName="RedDotRecordBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+        <table tableName="t_proxy_apply"
+               domainObjectName="ProxyApplyBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+ -->
+        <table tableName="t_app_offline_apply"
+               domainObjectName="OfflineApplyBean"
+               enableCountByExample="false"
+               enableDeleteByExample="false"
+               enableUpdateByExample="false"
+               enableSelectByExample="false"
+               enableDeleteByPrimaryKey="true"
+               enableInsert="true"
+               enableUpdateByPrimaryKey="true">
+        </table>
+
+    </context>
+</generatorConfiguration>
